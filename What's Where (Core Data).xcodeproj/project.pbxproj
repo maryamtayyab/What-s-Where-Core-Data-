@@ -15,6 +15,10 @@
 		933E1360254925C600D359E3 /* What_s_Where__Core_Data_.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 933E135E254925C600D359E3 /* What_s_Where__Core_Data_.xcdatamodeld */; };
 		933E136B254925C600D359E3 /* What_s_Where__Core_Data_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E136A254925C600D359E3 /* What_s_Where__Core_Data_Tests.swift */; };
 		933E1376254925C700D359E3 /* What_s_Where__Core_Data_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E1375254925C700D359E3 /* What_s_Where__Core_Data_UITests.swift */; };
+		933E1396254927CE00D359E3 /* color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E1395254927CE00D359E3 /* color.swift */; };
+		933E139D25492B6900D359E3 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E139C25492B6900D359E3 /* Home.swift */; };
+		933E13A525492BAE00D359E3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E13A425492BAE00D359E3 /* HomeViewModel.swift */; };
+		933E13B225492EF700D359E3 /* NewDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933E13B125492EF700D359E3 /* NewDataView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		933E1371254925C600D359E3 /* What's Where (Core Data)UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "What's Where (Core Data)UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		933E1375254925C700D359E3 /* What_s_Where__Core_Data_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = What_s_Where__Core_Data_UITests.swift; sourceTree = "<group>"; };
 		933E1377254925C700D359E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		933E1395254927CE00D359E3 /* color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = color.swift; sourceTree = "<group>"; };
+		933E139C25492B6900D359E3 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		933E13A425492BAE00D359E3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		933E13B125492EF700D359E3 /* NewDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,8 @@
 		933E1352254925C300D359E3 /* What's Where (Core Data) */ = {
 			isa = PBXGroup;
 			children = (
+				933E139B25492B3E00D359E3 /* ViewModel */,
+				933E139A25492B3100D359E3 /* View */,
 				933E1353254925C300D359E3 /* What_s_Where__Core_Data_App.swift */,
 				933E1355254925C300D359E3 /* ContentView.swift */,
 				933E1357254925C600D359E3 /* Assets.xcassets */,
@@ -106,6 +116,7 @@
 				933E1361254925C600D359E3 /* Info.plist */,
 				933E135E254925C600D359E3 /* What_s_Where__Core_Data_.xcdatamodeld */,
 				933E1359254925C600D359E3 /* Preview Content */,
+				933E1395254927CE00D359E3 /* color.swift */,
 			);
 			path = "What's Where (Core Data)";
 			sourceTree = "<group>";
@@ -134,6 +145,23 @@
 				933E1377254925C700D359E3 /* Info.plist */,
 			);
 			path = "What's Where (Core Data)UITests";
+			sourceTree = "<group>";
+		};
+		933E139A25492B3100D359E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				933E139C25492B6900D359E3 /* Home.swift */,
+				933E13B125492EF700D359E3 /* NewDataView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		933E139B25492B3E00D359E3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				933E13A425492BAE00D359E3 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,7 +295,11 @@
 			files = (
 				933E1360254925C600D359E3 /* What_s_Where__Core_Data_.xcdatamodeld in Sources */,
 				933E135D254925C600D359E3 /* Persistence.swift in Sources */,
+				933E13A525492BAE00D359E3 /* HomeViewModel.swift in Sources */,
+				933E13B225492EF700D359E3 /* NewDataView.swift in Sources */,
 				933E1356254925C300D359E3 /* ContentView.swift in Sources */,
+				933E1396254927CE00D359E3 /* color.swift in Sources */,
+				933E139D25492B6900D359E3 /* Home.swift in Sources */,
 				933E1354254925C300D359E3 /* What_s_Where__Core_Data_App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
