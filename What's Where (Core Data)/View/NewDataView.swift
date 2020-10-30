@@ -39,6 +39,37 @@ struct NewDataView: View {
                     
                     
            */
+                
+               /*
+                Color.backgroundColor
+                    .edgesIgnoringSafeArea(.all)
+                
+                
+                
+                NavigationLink(destination: Imagepicker(show: $imagepicker, image: $imageData, source: source),isActive: $imagepicker) {
+                    
+                    Text(" ")
+                    
+                    
+                    
+                }
+ 
+ */
+                ZStack {
+                    
+                    Color.backgroundColor
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    
+                    
+                    NavigationLink(destination: Imagepicker(show: $imagepicker, image: $imageData, source: source),isActive: $imagepicker) {
+                        
+                        Text(" ")
+                        
+                        
+                        
+                    }
+                
                     VStack {
                         
                         HStack {
@@ -127,6 +158,22 @@ struct NewDataView: View {
                        //Upload Image/ Take Image Option appears
                     }.navigationBarTitle("", displayMode: .inline)
                     .navigationBarHidden(true)
+                
+                    .actionSheet(isPresented: $show) {
+                        
+                        ActionSheet(title: Text(""), message: Text (""), buttons: [.default(Text("Upload"), action: {
+                            
+                            self.source = .photoLibrary
+                            self.imagepicker.toggle()
+                        }), .default(Text("Take a Picture"), action: {
+                            
+                            self.source = .camera
+                            self.imagepicker.toggle()
+                        })])
+                    }
+                
+                }
+                
             //        .actionSheet(isPresented: $show) {
                 
                    /*
@@ -179,5 +226,60 @@ struct NewDataView: View {
     }
  */
 }
+    }
+    
+    struct Imagepicker: UIViewControllerRepresentable {
+        
+        func makeCoordinator() -> Imagepicker.Coordinator {
+           
+            return Imagepicker.Coordinator(parent1: self)
+        }
+        
+        @Binding var show : Bool
+        @Binding var image : Data
+        var source : UIImagePickerController.SourceType
+        
+        func makeUIViewController(context: UIViewControllerRepresentableContext<Imagepicker>) -> UIImagePickerController {
+            
+            let controller = UIImagePickerController()
+            controller.sourceType = source
+            controller.delegate = context.coordinator
+            return controller
+            
+        }
+        
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: UIViewControllerRepresentableContext<Imagepicker>) {
+            
+        }
+    
+    class Coordinator : NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+        
+        var parent : Imagepicker
+        init(parent1 : Imagepicker) {
+            
+            parent = parent1
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            
+            self.parent.show.toggle()
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            
+            let image = info[.originalImage] as! UIImage
+            let data = image.pngData()
+            self.parent.image = data!
+            self.parent.show.toggle()
+        }
+    }
+}
+
+
+}
+
+struct NewDataView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
