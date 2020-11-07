@@ -49,10 +49,12 @@ struct Home: View {
                                 Text(item.content ?? "")
                                     .font(.title)
                                     .fontWeight(.bold)
+                                    .offset(x:100)
                                 
                                 Text(item.location ?? "")
                                     .font(.subheadline)
                                     .fontWeight(.medium)
+                                    .offset(x:100)
                             })
                             
                             .foregroundColor(.black)
@@ -74,7 +76,7 @@ struct Home: View {
                                        
                                         
                                         
-                                })
+                                }).offset(x:270)
                                
                             
                             
