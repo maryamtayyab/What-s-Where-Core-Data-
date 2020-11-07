@@ -14,6 +14,7 @@ struct Home: View {
     
     @StateObject var homeData = HomeViewModel()
     
+    @Environment(\.managedObjectContext) var context
  
     // Fetching Data
     @FetchRequest(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(key: "content", ascending:true)],animation: .spring()) var results : FetchedResults<Item>
@@ -55,7 +56,30 @@ struct Home: View {
                             })
                             
                             .foregroundColor(.black)
+                           
+                                Button(action: {
+                                    context.delete(item)
+                                    try! context.save()
+                                    
+                                        
+                                },
+                                label: {
+                                    Text("Delete")
+                                        .font(Font.system(size: 16, design: .default))
+                                        .foregroundColor(Color.red)
+                                       
+                                        
+                                       
+                                       
+                                       
+                                        
+                                        
+                                })
+                               
                             
+                            
+                            
+                               
                             
                         }
                     }
