@@ -8,16 +8,22 @@
 import SwiftUI
 import CoreData
 class HomeViewModel : ObservableObject {
-    @Published var content = "Item Name"
     
+    @Published var content = " "    // Item Name var
+    @Published var location = " "           //Item location var
     @Published var isNewData = false
     
-    func writeData(context: NSManagedObjectContext) {
+    
+    
+    //writeData function
        
+    func writeData(context: NSManagedObjectContext) {
         
         
-        let newItem = Item(context: context)
-        newItem.content = content
+        let newItem = Item(context: context)     // Item is the entity we created
+        newItem.content = content                //Item name
+        newItem.location = location              //Item location
+        
         
         // saving data
         

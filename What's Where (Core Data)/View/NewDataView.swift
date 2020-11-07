@@ -16,7 +16,8 @@ struct NewDataView: View {
     @State var source : UIImagePickerController.SourceType = .photoLibrary
     
    @ObservedObject var homeData : HomeViewModel
-    @Environment(\.managedObjectContext) var context
+  
+    @Environment(\.managedObjectContext) var context //this matches a variable in persistence file
     
     var body: some View {
         
@@ -169,11 +170,12 @@ struct NewDataView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .font(Font.system(size: 25, design: .default))
                         
+
                             
                           
                         
                         // Item Location TextField
-                        TextField("Item Location", text: $text2)
+                        TextField("Item Location", text: $homeData.location)
                             
                             .padding(.all, 20)
                            
@@ -185,15 +187,17 @@ struct NewDataView: View {
                         //Add Item Button
                         Button(action: {homeData.writeData(context: context) }, label: {
                             Text("Add Item")
-                                .font(Font.system(size: 25, design: .default))
-                               
-                                .frame(width:170, height:55)
+                                .font(Font.system(size: 40, design: .default))
+                                .padding()
+                                .frame(width:250, height:75)
                                 .foregroundColor(.white)
                                 .background(Color.addItemColor)
-                                
                                 .cornerRadius(50)
-                                .padding(.all,20)
                         })
+                        
+                        .padding()
+                        .disabled(homeData.content == " " ? true : false)
+                        .opacity(homeData.content == " " ? 0.5 : 1)
                     }
                        //Upload Image/ Take Image Option appears
                     }.navigationBarTitle("", displayMode: .inline)
@@ -234,9 +238,7 @@ struct NewDataView: View {
             
            
         }
-            .padding()
-            .disabled(homeData.content == " " ? true : false)
-            .opacity(homeData.content == " " ? 0.5 : 1)
+            
             //disabling button when no data
             
         /*

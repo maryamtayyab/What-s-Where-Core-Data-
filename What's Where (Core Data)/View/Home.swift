@@ -5,11 +5,15 @@
 //  Created by Maryam TayyabII on 2020-10-27.
 //
 
+
+// HOME FEED PAGE
+
 import SwiftUI
 import CoreData
 struct Home: View {
     
     @StateObject var homeData = HomeViewModel()
+    
  
     // Fetching Data
     @FetchRequest(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(key: "content", ascending:true)],animation: .spring()) var results : FetchedResults<Item>
@@ -32,22 +36,22 @@ struct Home: View {
                 .padding(.top,UIApplication.shared.windows.first?.safeAreaInsets.top)
                 .background(Color.white)
                          
-                            
-                
-                
                 
                 ScrollView(.vertical, showsIndicators: false, content: {
                     
                     LazyVStack(alignment: .leading, spacing:20) {
                         
-                        ForEach(results) { task in
+                        ForEach(results) { item in
                             
                             VStack(alignment: .leading, spacing:5, content: {
-                                Text(task.content ?? "")
+                                //shows item name
+                                Text(item.content ?? "")
                                     .font(.title)
                                     .fontWeight(.bold)
                                 
-                             
+                                Text(item.location ?? "")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
                             })
                             
                             .foregroundColor(.black)
