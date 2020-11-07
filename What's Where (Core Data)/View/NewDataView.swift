@@ -69,36 +69,69 @@ struct NewDataView: View {
                         
                         
                     }
-                
+                    
+                    VStack{
+                    
                     VStack {
                         
                         HStack {
+                           
                             
-                            // Back button
-                            Button(action: {}) {
-                                Image("backButton")
-                                    .renderingMode(.original)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 120, height: 100)
-                                    .cornerRadius(40)
-                            }
                             
+                        
+                        // Back button
+                        Button(action: {}) {
+                            Image("backButton")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 120, height: 100)
+                                .cornerRadius(40)
+                             //   .padding(.top,-55)
+                                .offset(x:0)
+                        }
                             
                             // Add Item Text
                             Text("Add Item").fontWeight(.bold)
-                                .frame(width: 260, height: 20, alignment: .topTrailing)
+                                .frame(width: 260, height: 20)
                                 .font(Font.system(size: 25, design: .default))
+                                .offset(x:40)
+                              //  .padding(.top,-40)
+                            
+                            
                             
                             
                             
                         }
+                       
                         
-                        // Where selected Image appears
-                        if imageData.count != 0 {
+                        HStack {
                             
-                            Image(uiImage: UIImage(data: self.imageData)!).resizable().frame(width:150, height:150).cornerRadius(30)
-                            
+                            // Where selected Image appears
+                            if imageData.count != 0 {
+                                
+                                Image(uiImage: UIImage(data: self.imageData)!)
+                                
+                                    .resizable()
+                                        .scaledToFill()
+                                        .frame(height: 200)
+                                        .clipped()
+                                        .listRowInsets(EdgeInsets())
+                                    .offset(y:20)
+                                    
+                                   
+                                    
+                                    
+                                    /*
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .scaledToFit()
+                                
+                                   .frame(width:450, height:200)
+     
+                              */
+                                
+                            }
                         }
                         
                     
@@ -111,17 +144,18 @@ struct NewDataView: View {
                         }) {
                            
                             // Camera Icon Image
-                            Image("camera")
+                            Image("cameraIconGrey")
                                 
                                 .renderingMode(.original)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 140, height: 110)
+                                .frame(width: 90, height: 90)
+                                .scaledToFit()
                                 .cornerRadius(40)
                                 .shadow(radius: 5)
-                                .background(Color.backgroundColor)
-                                .foregroundColor(Color.backgroundColor)
-                                .padding(.all,35)
+                            //   .background(Color.backgroundColor)
+                           //    .foregroundColor(Color.backgroundColor)
+                               .padding(.all,20)
                             
                             
                         }
@@ -130,31 +164,37 @@ struct NewDataView: View {
                         // Item Name textField
                         TextField("Item Name", text: $homeData.content)
                             
-                            
-                            .padding(.all, 30)
+                            .padding(.all, 20)
+                            .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .font(Font.system(size: 30, design: .default))
+                            .font(Font.system(size: 25, design: .default))
+                        
+                            
+                          
                         
                         // Item Location TextField
                         TextField("Item Location", text: $text2)
                             
-                            .padding(.all, 30)
+                            .padding(.all, 20)
                            
+                            .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
                             .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .font(Font.system(size: 30, design: .default))
+                            .font(Font.system(size: 25, design: .default))
                         
                         
                         //Add Item Button
                         Button(action: {homeData.writeData(context: context) }, label: {
                             Text("Add Item")
-                                .font(Font.system(size: 40, design: .default))
-                                .padding()
-                                .frame(width:250, height:75)
+                                .font(Font.system(size: 25, design: .default))
+                               
+                                .frame(width:170, height:55)
                                 .foregroundColor(.white)
                                 .background(Color.addItemColor)
+                                
                                 .cornerRadius(50)
+                                .padding(.all,20)
                         })
-                        
+                    }
                        //Upload Image/ Take Image Option appears
                     }.navigationBarTitle("", displayMode: .inline)
                     .navigationBarHidden(true)
