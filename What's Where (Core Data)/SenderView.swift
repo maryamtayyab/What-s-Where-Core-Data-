@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SenderView: View {
-    
+    // I only neeed this moc here to send all the info to the main view
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
     
@@ -52,8 +52,8 @@ struct SenderView: View {
                         .scaledToFit()
                         .cornerRadius(40)
                         .shadow(radius: 5)
-                   
-                        
+                    //   .background(Color.backgroundColor)
+                   //    .foregroundColor(Color.backgroundColor)
                        .padding(.all,20)
                 }
             }
@@ -99,6 +99,7 @@ struct SenderView: View {
             
         })
         }
+        
         .sheet(isPresented: self.$show, content: {
             ImagePicker(show: self.$show, image: self.$image)
         }).animation(.default)
