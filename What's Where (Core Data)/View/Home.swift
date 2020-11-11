@@ -7,7 +7,7 @@
 
 
 // HOME FEED PAGE
-
+/*
 import SwiftUI
 import CoreData
 struct Home: View {
@@ -44,7 +44,22 @@ struct Home: View {
                         
                         ForEach(results) { item in
                             
-                            VStack(alignment: .leading, spacing:5, content: {
+                            HStack{
+                                
+                                
+                           //     Image(uiImage: UIImage(data: item.image?? self.image)!)
+                             //       .resizable()
+                              //      .frame(width: UIScreen.main.bounds.width - //34, height: 210)
+                                //    .cornerRadius(15)
+                              
+                           //     (UIImage *)item.image:(NSData *)data;
+                                
+                             //   let uiImage: UIImage = UIImage(data: item.image)
+                           //     let saveImage = UIImage(named: "cameraIconGrey.png")
+                            
+                         //       let image = UIImage(data: item.image)
+                                
+                                VStack(alignment: .leading, spacing:5, content: {
                                 //shows item name
                                 Text(item.content ?? "")
                                     .font(.title)
@@ -57,6 +72,7 @@ struct Home: View {
                                     .offset(x:100)
                             })
                             
+                            }
                             .foregroundColor(.black)
                            
                                 Button(action: {
@@ -76,7 +92,7 @@ struct Home: View {
                                        
                                         
                                         
-                                }).offset(x:270)
+                                }).offset(x:250)
                                
                             
                             
@@ -116,3 +132,5 @@ struct Home_Previews: PreviewProvider {
         /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
+
+ */

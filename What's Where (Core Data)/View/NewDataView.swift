@@ -5,19 +5,23 @@
 //  Created by Maryam TayyabII on 2020-10-27.
 //
 
+/*
 import SwiftUI
 
 struct NewDataView: View {
-    @State private var text1 = ""
-    @State private var text2 = ""
-    @State var imageData : Data = .init(capacity:0)
+    @State private var text1 = ""   //textfield1
+    @State private var text2 = ""   //textfield2
+    @State var imageData : Data = .init(capacity:0)    //image data var
     @State var show = false
     @State var imagepicker = false
     @State var source : UIImagePickerController.SourceType = .photoLibrary
     
+    
    @ObservedObject var homeData : HomeViewModel
   
     @Environment(\.managedObjectContext) var context //this matches a variable in persistence file
+    
+  //  @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         
@@ -109,6 +113,7 @@ struct NewDataView: View {
                         HStack {
                             
                             // Where selected Image appears
+                            //displays imagedata if it is selected/image is taken
                             if imageData.count != 0 {
                                 
                                 Image(uiImage: UIImage(data: self.imageData)!)
@@ -121,16 +126,6 @@ struct NewDataView: View {
                                     .offset(y:20)
                                     
                                    
-                                    
-                                    
-                                    /*
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .scaledToFit()
-                                
-                                   .frame(width:450, height:200)
-     
-                              */
                                 
                             }
                         }
@@ -203,6 +198,7 @@ struct NewDataView: View {
                     }.navigationBarTitle("", displayMode: .inline)
                     .navigationBarHidden(true)
                 
+                    //responds to the camera button click, and displays "Upload" and "Take a picture" options
                     .actionSheet(isPresented: $show) {
                         
                         ActionSheet(title: Text(""), message: Text (""), buttons: [.default(Text("Upload"), action: {
@@ -218,55 +214,12 @@ struct NewDataView: View {
                 
                 }
                 
-            //        .actionSheet(isPresented: $show) {
-                
-                   /*
-                        ActionSheet(title: Text(""), message: Text (""), buttons: [.default(Text("Upload"), action: {
-                            
-                            self.source = .photoLibrary
-                            self.imagepicker.toggle()
-                        }), .default(Text("Take a Picture"), action: {
-                            
-                            self.source = .camera
-                            self.imagepicker.toggle()
-                        })])
-                    }
-                }
-                
-            */
-            
+          
             
            
         }
             
-            //disabling button when no data
             
-        /*
-            TextEditor(text: $homeData.content)
-                .padding()
-            
-            Divider()
-                .padding(.horizontal)
-            
-            HStack{
-                
-                Text("When")
-                    .font(.title)
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                    .foregroundColor(.black)
-                
-                Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-            }
-            
-            Spacer(minLength: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/)
-            
-        }
-        
-        .background(Color.black.opacity(0.06))
-        
-       
-    }
- */
 }
     }
     
@@ -310,7 +263,8 @@ struct NewDataView: View {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             
             let image = info[.originalImage] as! UIImage
-            let data = image.pngData()
+           
+            let data = image.jpegData(compressionQuality: 1.0)
             self.parent.image = data!
             self.parent.show.toggle()
         }
@@ -325,3 +279,5 @@ struct NewDataView_Previews: PreviewProvider {
         /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }
+
+ */
