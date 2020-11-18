@@ -45,50 +45,58 @@ struct ContentView: View {
                 ForEach(savings, id: \.self) { save in
                 VStack(alignment: .leading) {
                    
-                    Button(action: {
-                        moc.delete(save)
-                        
-                        try! moc.save()
-                        
-                            
-                    },
-                    label: {
-                        Text("Delete")
-                            .font(Font.system(size: 16, design: .default))
-                            .foregroundColor(Color.red)
-                           
-                            
-                           
-                           
-                           
-                            
-                            
-                    }).offset(x:250)
-                        
-                    //if self.text == save.name.self {
-                    Text("\(save.name ?? "")")
-                    .padding(3)
-                    .font(.subheadline)
-                    .foregroundColor(.white)
-                        .background(Color.black)
-                        .cornerRadius(5)
+//                    Button(action: {
+//                        moc.delete(save)
+//
+//                        try! moc.save()
+//
+//                    },
+//                    label: {
+//                        Text("Delete")
+//                            .font(Font.system(size: 16, design: .default))
+//                            .foregroundColor(Color.red)
+//
+//                    }).offset(x:250)
                     
-                    Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
-                        .resizable()
-                        .frame(width: UIScreen.main.bounds.width - 34, height: 210)
-                        .cornerRadius(15)
-                    
-                    HStack {
-                    Text("\(save.location ?? "")")
-                        .lineLimit(4)
-                        Spacer()
-                      
+                    VStack {
+                        //put title on screen
+                        HStack {
+                            Text("\(save.name ?? "")")
+                                .padding(3)
+                                .font(.title2)
+                            //  .foregroundColor(.white)
+                            //      .background(Color.black)
+                            //      .cornerRadius(5)
+                            
+                            //put location on screen
+                            Text("\(save.location ?? "")")
+                                .lineLimit(4)
+                                .font(.subheadline)
+                                Spacer()
+                            
+                            //delete button
+                            Button(action: {
+                                moc.delete(save)
+                                
+                                try! moc.save()
+                                    
+                            },
+                            label: {
+                                Text("Delete")
+                                    .font(Font.system(size: 16, design: .default))
+                                    .foregroundColor(Color.red)
+
+                            })
+                            
+                        }
+                        
+                        Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+                                .cornerRadius(15)
+                        
                         
  ////------------------------- //ADD DELETE BUTTON HERE.  (USING VAR MOC).....................................................//
-          
-                      
- 
- 
                     
                         
                     }
@@ -106,6 +114,8 @@ struct ContentView: View {
             }
                 .navigationBarItems(leading:VStack {
                     Text("Here it is!")
+                        .font(.title)
+                        .bold()
                 
                 }, trailing:
                     HStack{
@@ -113,7 +123,7 @@ struct ContentView: View {
                         Button(action: {
                             self.show.toggle()
                         }) {
-                            Image(systemName: "camera.fill")
+                            Image(systemName: "plus.circle.fill")
                         }
                             
                             
