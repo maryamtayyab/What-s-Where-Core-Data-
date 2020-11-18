@@ -34,11 +34,13 @@ struct SenderView: View {
                 Button(action: {
                     self.show.toggle()
                 }) {
+                    if image.count != 0 {
                     Image(uiImage: UIImage(data: self.image)!)
                         .renderingMode(.original)
                     .resizable()
                         .frame(width: 170, height: 150)
                     .cornerRadius(6)
+                    }
                     
                 }
             } else {

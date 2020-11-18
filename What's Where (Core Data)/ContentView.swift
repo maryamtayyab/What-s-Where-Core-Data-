@@ -89,12 +89,12 @@ struct ContentView: View {
                             })
                             
                         }
-                        
+                        if save.imageD != nil {
                         Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
                             .resizable()
                             .frame(width: UIScreen.main.bounds.width - 34, height: 210)
                                 .cornerRadius(15)
-                        
+                        }
                         
  ////------------------------- //ADD DELETE BUTTON HERE.  (USING VAR MOC).....................................................//
                     
