@@ -25,6 +25,10 @@ struct SenderView: View {
   
     var body: some View {
         NavigationView {
+            ZStack{
+                Color.backgroundColor
+                    .edgesIgnoringSafeArea(.all)
+                
         VStack {
             if self.image.count != 0 {
                 Button(action: {
@@ -33,7 +37,7 @@ struct SenderView: View {
                     Image(uiImage: UIImage(data: self.image)!)
                         .renderingMode(.original)
                     .resizable()
-                        .frame(width: 100, height: 100)
+                        .frame(width: 170, height: 150)
                     .cornerRadius(6)
                     
                 }
@@ -58,17 +62,31 @@ struct SenderView: View {
                 }
             }
             
-            TextField("location...", text: self.$location)
-            .padding()
-                .background(Color(red: 233.0/255, green: 234.0/255, blue: 243.0/255))
-            .cornerRadius(20)
-            
-            
             TextField("name...", text: self.$name)
-            .padding()
-                .background(Color(red: 233.0/255, green: 234.0/255, blue: 243.0/255))
-            .cornerRadius(20)
+           // .padding()
+             //   .background(Color(red: 233.0/255, green: 234.0/255, blue: 243.0/255))
+          //  .cornerRadius(20)
             
+                .padding(.all, 15)
+               
+                .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(Font.system(size: 20, design: .default))
+            
+            
+            TextField("location...", text: self.$location)
+          //  .padding()
+             //   .background(Color(red: 233.0/255, green: 234.0/255, blue: 243.0/255))
+         //   .cornerRadius(20)
+            
+                .padding(.all, 15)
+                .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(Font.system(size: 20, design: .default))
+              
+            
+            
+        
            
             Button(action: {
               
@@ -83,21 +101,51 @@ struct SenderView: View {
                 self.name = ""
                 self.location = ""
                 
+                /* .font(Font.system(size: 40, design: .default))
+                 .padding()
+                 .frame(width:250, height:75)
+                 .foregroundColor(.white)
+                 .background(Color.addItemColor)
+                 .cornerRadius(50)*/
                 
             }) {
                 Text("Add Item")
+                    .font(Font.system(size: 40, design: .default))
                     .fixedSize()
-                    .frame(width: 250, height: 30)
+                    .padding(.all,10)
+                    .frame(width: 250, height: 60)
+                    .foregroundColor(.white)
+                   
                     .foregroundColor((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.white : Color.black)
                
-                .background((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.blue : Color.gray)
-                .cornerRadius(13)
+                    .background((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.blue : Color.addItemColor)
+                .cornerRadius(50)
             }.animation(.default)
+            .padding()
            
-        }.navigationBarItems(trailing: Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
-            Text("Cancel")
+        }
+            }
+            //.navigationBarTitle("Add Item", displayMode:.inline)
+           
+            .navigationBarItems(leading:VStack {
+                Text("Add Item")
+            }, trailing:
+                HStack{
+                    
+                  //  Text("Add Item")
+                    //    .offset(x:-20)
+                    Button(action: { self.presentationMode.wrappedValue.dismiss()}) {
+                        Text("Cancel")
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                })
             
-        })
+                                    
         }
         
         .sheet(isPresented: self.$show, content: {
