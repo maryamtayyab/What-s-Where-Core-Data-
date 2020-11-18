@@ -103,13 +103,25 @@ struct ContentView: View {
             }.padding()//ForEach
                
 
-            }.navigationBarTitle("News", displayMode: .inline)
-                .navigationBarItems(trailing: Button(action: {
-                    self.show.toggle()
-                }) {
-                    Image(systemName: "camera.fill")
-                })
-        }
+            }
+                .navigationBarItems(leading:VStack {
+                    Text("Here it is!")
+                
+                }, trailing:
+                    HStack{
+                        
+                        Button(action: {
+                            self.show.toggle()
+                        }) {
+                            Image(systemName: "camera.fill")
+                        }
+                            
+                            
+                            
+                        })
+                        
+                                
+            
         .sheet(isPresented: self.$show) {
             SenderView().environment(\.managedObjectContext, self.moc)
         }
@@ -132,6 +144,7 @@ struct ContentView: View {
     }
  */
 }
+    }
  
 
 struct ContentView_Previews: PreviewProvider {
