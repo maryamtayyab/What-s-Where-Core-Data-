@@ -90,11 +90,27 @@ struct ContentView: View {
                             
                         }
                         
-                        Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
-                            .resizable()
-                            .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+                        if save.imageD != nil {
+//                            Image(uiImage: UIImage(data: save.imageD!)!)
+                            let temp = UIImage(data: save.imageD!)
+                            Image(uiImage: temp ?? UIImage(systemName: "questionmark")!)
+                                .resizable()
+                                .frame(width: UIScreen.main.bounds.width - 34, height: 210)
                                 .cornerRadius(15)
+                            
+                        }
                         
+                        
+                        //can create with no image, but can't create with image
+                        //crashes when you try to add an image to entry (!=)
+                        //doesn't crash using (>), but image still isn't present
+                        
+//                        if image.count > 0 {
+//                            Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
+//                                .resizable()
+//                                .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+//                                .cornerRadius(15)
+//                        }
                         
  ////------------------------- //ADD DELETE BUTTON HERE.  (USING VAR MOC).....................................................//
                     
@@ -124,9 +140,9 @@ struct ContentView: View {
                             self.show.toggle()
                         }) {
                             Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width:30, height:30)
                         }
-                            
-                            
                             
                         })
                         
