@@ -93,11 +93,22 @@ struct ContentView: View {
                         if save.imageD != nil {
 //                            Image(uiImage: UIImage(data: save.imageD!)!)
                             let temp = UIImage(data: save.imageD!)
-                            Image(uiImage: temp ?? UIImage(systemName: "questionmark")!)
-                                .resizable()
-                                .frame(width: UIScreen.main.bounds.width - 34, height: 210)
-                                .cornerRadius(15)
                             
+                            if temp != nil {
+                                Image(uiImage: temp!)
+                                    .resizable()
+                                    .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+                                    .cornerRadius(15)
+                            }
+                            else {
+                                Image(uiImage: UIImage(systemName: "questionmark")!)
+                                    .resizable()
+                                    .frame(width: UIScreen.main.bounds.width - 0, height: 0)
+                            }
+//                            Image(uiImage: temp ?? UIImage(systemName: "circle")!)
+//                                .resizable()
+//                                .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+//                                .cornerRadius(15)
                         }
                         
                         
