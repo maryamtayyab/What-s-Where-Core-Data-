@@ -22,9 +22,9 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
     @FetchRequest(entity: Saving.entity(), sortDescriptors: [
-        NSSortDescriptor(keyPath: \Saving.name, ascending: true),
+        NSSortDescriptor(keyPath: \Saving.names, ascending: true),
         NSSortDescriptor(keyPath: \Saving.imageD, ascending: true),
-        NSSortDescriptor(keyPath: \Saving.location, ascending: true)
+        NSSortDescriptor(keyPath: \Saving.locations, ascending: true)
        ]
     ) var savings : FetchedResults<Saving>
     
@@ -39,7 +39,9 @@ struct ContentView: View {
     @State var text = ""
     var body: some View {
         NavigationView {
-            
+            ZStack{
+                    Color.backgroundColor
+                        .edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
             
                 ForEach(savings, id: \.self) { save in
@@ -61,7 +63,8 @@ struct ContentView: View {
                     VStack {
                         //put title on screen
                         HStack {
-                            Text("\(save.name ?? "")")
+                            Text("\(save.names ?? "")")
+                                .offset(x:9)
                                 .padding(3)
                                 .font(.title2)
                             //  .foregroundColor(.white)
@@ -69,9 +72,10 @@ struct ContentView: View {
                             //      .cornerRadius(5)
                             
                             //put location on screen
-                            Text("\(save.location ?? "")")
+                            Text("\(save.locations ?? "")")
                                 .lineLimit(4)
                                 .font(.subheadline)
+                                .padding(3)
                                 Spacer()
                             
                             //delete button
@@ -85,6 +89,7 @@ struct ContentView: View {
                                 Text("Delete")
                                     .font(Font.system(size: 16, design: .default))
                                     .foregroundColor(Color.red)
+                                    .offset(x:-8)
 
                             })
                             
@@ -163,7 +168,7 @@ struct ContentView: View {
             SenderView().environment(\.managedObjectContext, self.moc)
         }
     }
- 
+            }
     
   /*
     func deleteItem(at offsets: IndexSet) {

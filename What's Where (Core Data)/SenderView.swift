@@ -93,8 +93,8 @@ struct SenderView: View {
             Button(action: {
               
                 let send = Saving(context: self.moc)
-                send.name = self.name
-                send.location = self.location
+                send.names = self.name
+                send.locations = self.location
                 send.imageD = self.image
                
                 
@@ -120,7 +120,7 @@ struct SenderView: View {
                    
                     .foregroundColor((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.white : Color.black)
                
-                    .background((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.blue : Color.addItemColor)
+                    .background((self.name.count > 0 && self.location.count > 0 && self.image.count > 0) ? Color.addItemColor : Color.addItemColor)
                 .cornerRadius(50)
             }.animation(.default)
             .padding()
@@ -131,6 +131,7 @@ struct SenderView: View {
            
             .navigationBarItems(leading:VStack {
                 Text("Add Item")
+                
             }, trailing:
                 HStack{
                     

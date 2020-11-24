@@ -16,9 +16,9 @@ extension Saving {
         return NSFetchRequest<Saving>(entityName: "Saving")
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var names: String?
     @NSManaged public var imageD: Data?
-    @NSManaged public var location: String?
+    @NSManaged public var locations: String?
 
 
 }
