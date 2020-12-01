@@ -73,7 +73,7 @@ struct SenderView: View {
                
                 .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .font(Font.system(size: 20, design: .default))
+                .font(Font.system(size: 22, design: .default))
             
             
             TextField("location...", text: self.$location)
@@ -84,7 +84,7 @@ struct SenderView: View {
                 .padding(.all, 15)
                 .background(Color(red: 0.52, green: 0.55, blue: 0.58, opacity: 0.3))
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .font(Font.system(size: 20, design: .default))
+                .font(Font.system(size: 18, design: .default))
               
             
             

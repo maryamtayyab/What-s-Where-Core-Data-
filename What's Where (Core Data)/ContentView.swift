@@ -65,17 +65,28 @@ struct ContentView: View {
                         HStack {
                             Text("\(save.names ?? "")")
                                 .offset(x:9)
-                                .padding(3)
+                                .padding(6)
                                 .font(.title2)
                             //  .foregroundColor(.white)
                             //      .background(Color.black)
                             //      .cornerRadius(5)
                             
                             //put location on screen
+                            Image("icon")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 20, height: 25)
+                                .scaledToFit()
+                            //    .cornerRadius(40)
+                                .shadow(radius: 5)
+                               
+                                .offset(x:16)
                             Text("\(save.locations ?? "")")
                                 .lineLimit(4)
                                 .font(.subheadline)
-                                .padding(3)
+                                .padding(2)
+                                .offset(x:15)
                                 Spacer()
                             
                             //delete button
