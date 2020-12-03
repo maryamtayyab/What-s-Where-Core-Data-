@@ -41,7 +41,7 @@ struct ContentView: View {
         NavigationView {
             ZStack{
                     Color.backgroundColor
-                        .edgesIgnoringSafeArea(.all)
+                       // .edgesIgnoringSafeArea(.all)
             ScrollView(.vertical, showsIndicators: false) {
             
                 ForEach(savings, id: \.self) { save in
@@ -71,7 +71,40 @@ struct ContentView: View {
                             //      .background(Color.black)
                             //      .cornerRadius(5)
                             
-                            //put location on screen
+         
+                            
+                            if save.locations != nil {
+                                let temp2 = save.locations
+                                if (temp2 ?? " ").isEmpty {
+                                    Image("icon")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 0, height: 0)
+                                        .scaledToFit()
+                                    //    .cornerRadius(40)
+                                        .shadow(radius: 5)
+                                   
+                                        .offset(x:16)
+                                }
+                                else {
+                                    Image("icon")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 20, height: 25)
+                                        .scaledToFit()
+                                    //    .cornerRadius(40)
+                                        .shadow(radius: 5)
+                                   
+                                        .offset(x:16)
+                                }
+                            }
+                           
+                            
+                        /*
+                            if save.locations == nil
+                            {
                             Image("icon")
                                 .renderingMode(.original)
                                 .resizable()
@@ -80,8 +113,23 @@ struct ContentView: View {
                                 .scaledToFit()
                             //    .cornerRadius(40)
                                 .shadow(radius: 5)
-                               
+                           
                                 .offset(x:16)
+                            }
+                            else {
+                                
+                                Image("icon")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 0, height: 0)
+                                    .scaledToFit()
+                                //    .cornerRadius(40)
+                                    .shadow(radius: 5)
+                               
+                                    .offset(x:16)
+                            }
+ */
                             Text("\(save.locations ?? "")")
                                 .lineLimit(4)
                                 .font(.subheadline)
@@ -113,7 +161,7 @@ struct ContentView: View {
                             if temp != nil {
                                 Image(uiImage: temp!)
                                     .resizable()
-                                    .frame(width: UIScreen.main.bounds.width - 34, height: 210)
+                                    .frame(width: UIScreen.main.bounds.width - 34, height: 310)
                                     .cornerRadius(15)
                             }
                             else {
@@ -128,41 +176,22 @@ struct ContentView: View {
                         }
                         
                         
-                        //can create with no image, but can't create with image
-                        //crashes when you try to add an image to entry (!=)
-                        //doesn't crash using (>), but image still isn't present
-                        
-//                        if image.count > 0 {
-//                            Image(uiImage: UIImage(data: save.imageD ?? self.image)!)
-//                                .resizable()
-//                                .frame(width: UIScreen.main.bounds.width - 34, height: 210)
-//                                .cornerRadius(15)
-//                        }
-                        
- ////------------------------- //ADD DELETE BUTTON HERE.  (USING VAR MOC).....................................................//
-                    
-                        
                     }
                     
-                        
-                    
-                //HStack
-                    //}//if
-                //VStack
-            //    }//.onDelete(perform: deleteItem)
                 
             }.padding()//ForEach
                
 
             }
                 .navigationBarItems(leading:VStack {
+                    
                     Text("Here it is!")
                         .font(.title)
                         .bold()
                 
                 }, trailing:
                     HStack{
-                        
+                       
                         Button(action: {
                             self.show.toggle()
                         }) {
