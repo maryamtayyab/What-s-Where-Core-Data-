@@ -5,7 +5,9 @@
 //  Created by Maryam TayyabII on 2020-11-09.
 //
 //Start
+import Foundation
 import SwiftUI
+import Combine
 
 struct SenderView: View {
     // I only neeed this moc here to send all the info to the main view
@@ -22,6 +24,7 @@ struct SenderView: View {
     
     @State var location = ""
    
+    @State var showAction = false
     @State var imagepicker = false
     
     @State var source : UIImagePickerController.SourceType = .photoLibrary
@@ -34,11 +37,12 @@ struct SenderView: View {
                 Color.backgroundColor
                     .edgesIgnoringSafeArea(.all)
                 
-                
-                NavigationLink(destination: ImagePicker(show: $imagepicker, image: $image, source: source),isActive: $imagepicker) {
+           
+           /*     NavigationLink(destination: ImagePicker(show: $imagepicker, image: $image, source: source),isActive: $imagepicker) {
                      
                      Text(" ")
-            
+ 
+            */
                         /*
                        .sheet(isPresented: self.$show, content: {
                         ImagePicker(show: self.$show, image: self.$image, source: .photoLibrary)
@@ -48,7 +52,7 @@ struct SenderView: View {
         VStack {
             if self.image.count != 0 {
                 Button(action: {
-                    self.show.toggle()
+                    self.showAction.toggle()
                 }) {
                     if image.count != 0 {
                     Image(uiImage: UIImage(data: self.image)!)
@@ -61,7 +65,8 @@ struct SenderView: View {
                 }
             } else {
                 Button(action: {
-                    self.show.toggle()
+                    
+                    self.showAction.toggle()
                     
                 }) {
                     // Camera Icon Image
@@ -164,33 +169,58 @@ struct SenderView: View {
                     
                 })
             
-                                    
-        }
-        
-        .actionSheet(isPresented: $show) {
+             
+            .actionSheet(isPresented: $showAction) {
+                
+                ActionSheet(title: Text("Select Photo"), message: Text ("Select a photo from the library or use the camera"), buttons: [.default(Text("Camera")) {
+                    
+                    self.source = .camera
+                    self.show.toggle()
+                    
+                },
+                
+                
             
-            ActionSheet(title: Text(""), message: Text (""), buttons: [.default(Text("Upload"), action: {
+                .default(Text("photo Library")) {
+                   
+                    self.source = .photoLibrary
+                    self.show.toggle()
+                }
+                ])
+            }
                 
-                self.source = .photoLibrary
-                self.imagepicker.toggle()
-            }), .default(Text("Take a Picture"), action: {
+            .sheet(isPresented: self.$show) {
+                ImagePicker(show:self.$show, image: self.$image, source: self.source)
                 
-                self.source = .camera
-                self.imagepicker.toggle()
-            })])
-        }
+            /*
+                action: {
+                    
+                    self.source = .photoLibrary
+                    self.imagepicker.toggle()
+                }), .default(Text("Take a Picture"), action: {
+                    
+                    self.source = .camera
+                    self.imagepicker.toggle()
+                })])
+            } .sheet(isPresented: self.$show) {
+                ImagePicker(show:self.$show, image: self.$image, source: self.source)
+            }  */
+            
         
-     //   .sheet(isPresented: self.$show, content: {
-       //     ImagePicker(show: self.$show, image:// self.$image)
-     //   }).animation(.default)
+        
+       
+              
+   //    .sheet(isPresented: self.$show, content: {
+     //   ImagePicker(show: self.$show, image: self.$image)
+       //}).animation(.default)
     
+  //  }
+
+
+}
+
     }
 }
 
-struct SenderView_Previews: PreviewProvider {
-    static var previews: some View {
-        SenderView()
-    }
 }
 
-}
