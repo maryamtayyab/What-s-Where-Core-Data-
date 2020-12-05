@@ -21,6 +21,11 @@ struct SenderView: View {
     @State var name = ""
     
     @State var location = ""
+   
+    @State var imagepicker = false
+    
+    @State var source : UIImagePickerController.SourceType = .photoLibrary
+    
     
   
     var body: some View {
@@ -29,6 +34,17 @@ struct SenderView: View {
                 Color.backgroundColor
                     .edgesIgnoringSafeArea(.all)
                 
+                
+                NavigationLink(destination: ImagePicker(show: $imagepicker, image: $image, source: source),isActive: $imagepicker) {
+                     
+                     Text(" ")
+            
+                        /*
+                       .sheet(isPresented: self.$show, content: {
+                        ImagePicker(show: self.$show, image: self.$image, source: .photoLibrary)
+                       }).animation(.default)
+                    
+                */
         VStack {
             if self.image.count != 0 {
                 Button(action: {
@@ -151,9 +167,22 @@ struct SenderView: View {
                                     
         }
         
-        .sheet(isPresented: self.$show, content: {
-            ImagePicker(show: self.$show, image: self.$image)
-        }).animation(.default)
+        .actionSheet(isPresented: $show) {
+            
+            ActionSheet(title: Text(""), message: Text (""), buttons: [.default(Text("Upload"), action: {
+                
+                self.source = .photoLibrary
+                self.imagepicker.toggle()
+            }), .default(Text("Take a Picture"), action: {
+                
+                self.source = .camera
+                self.imagepicker.toggle()
+            })])
+        }
+        
+     //   .sheet(isPresented: self.$show, content: {
+       //     ImagePicker(show: self.$show, image:// self.$image)
+     //   }).animation(.default)
     
     }
 }
@@ -162,4 +191,6 @@ struct SenderView_Previews: PreviewProvider {
     static var previews: some View {
         SenderView()
     }
+}
+
 }
