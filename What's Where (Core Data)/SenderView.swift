@@ -185,7 +185,8 @@ struct SenderView: View {
                    
                     self.source = .photoLibrary
                     self.show.toggle()
-                }
+                },
+                .cancel()
                 ])
             }
                 
@@ -223,4 +224,6 @@ struct SenderView: View {
 }
 
 }
+
+
 
