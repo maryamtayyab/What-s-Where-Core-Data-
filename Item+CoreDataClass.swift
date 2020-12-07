@@ -6,6 +6,7 @@
 //
 //
 
+/*
 import Foundation
 import CoreData
 
@@ -13,3 +14,4 @@ import CoreData
 public class Item: NSManagedObject {
 
 }
+*/

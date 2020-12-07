@@ -45,7 +45,8 @@ struct ContentView: View {
             ScrollView(.vertical, showsIndicators: false) {
             
                 ForEach(savings, id: \.self) { save in
-                VStack(alignment: .leading) {
+                 
+                    VStack(alignment: .leading) {
                    
 //                    Button(action: {
 //                        moc.delete(save)
@@ -133,8 +134,9 @@ struct ContentView: View {
                             Text("\(save.locations ?? "")")
                                 .lineLimit(4)
                                 .font(.subheadline)
-                                .padding(2)
                                 .offset(x:15)
+                                .padding(2)
+                               
                                 Spacer()
                             
                             //delete button
@@ -163,6 +165,7 @@ struct ContentView: View {
                                     .resizable()
                                     .frame(width: UIScreen.main.bounds.width - 34, height: 310)
                                     .cornerRadius(15)
+                                  //  .offset(x:2)
                             }
                             else {
                                 Image(uiImage: UIImage(systemName: "questionmark")!)
@@ -176,39 +179,47 @@ struct ContentView: View {
                         }
                         
                         
+                        
+                        
                     }
                     
-                
-            }.padding()//ForEach
+                       
+            }
+                .navigationBarTitle(" ", displayMode: .inline)
+                .padding()//ForEach
                
 
             }
                 .navigationBarItems(leading:VStack {
-                    
-                    Text("Here it is!")
-                        .font(.title)
-                        .bold()
+                   
+                   Text("Here it is!")
+                       .font(.title)
+                       .bold()
+               
+               }, trailing:
+                   HStack{
+                      
+                       Button(action: {
+                           self.show.toggle()
+                       }) {
+                           Image(systemName: "plus.circle.fill")
+                               .resizable()
+                               .frame(width:30, height:30)
+                       }
+                           
+                       })
                 
-                }, trailing:
-                    HStack{
-                       
-                        Button(action: {
-                            self.show.toggle()
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width:30, height:30)
-                        }
-                            
-                        })
+             
                         
-                                
+            
             
         .sheet(isPresented: self.$show) {
             SenderView().environment(\.managedObjectContext, self.moc)
         }
     }
             }
+            
+            
     
   /*
     func deleteItem(at offsets: IndexSet) {
@@ -226,6 +237,7 @@ struct ContentView: View {
     }
  */
 }
+       
     }
  
 
