@@ -8,6 +8,7 @@ What does this App do?
 What System to run the app on?
 •Ideally, the app would be run on an iPhone 11
 •The project can be run on Xcode, however the camera feature won't be functional
+•File to run the project is named What's Where (Core Data).xcodeproj
 
 Who will use it?
 •Anyone can use the application
